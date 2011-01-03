@@ -5,27 +5,18 @@ reittiopas = {
 	COORDINATES : 'wgs84', // by default always use this format
 
 	_http_get : function( parameters, success ) {
-		var req = new XMLHttpRequest();
-		req.onreadystatechange = function() {
-			if (req.readyState == XMLHttpRequest.DONE) {
-				var json = eval( req.responseText );
-				success( json );
-			}
-		}
     		// add default parameters
     		parameters.epsg_in = reittiopas.COORDINATES;
     		parameters.epsg_out = reittiopas.COORDINATES;
 		parameters.user = reittiopas.USER;
 		parameters.pass = reittiopas.PASS;
-		// encode parameters to a query string
-		// TODO: can this be made nicer
-		var query = [];
-		for(var p in parameters) {
-			query.push(p + "=" + parameters[p] );
-		}
-    		console.log( reittiopas.REITTIOPAS + '?' + query.join('&')  );
-    		req.open("GET", reittiopas.REITTIOPAS + '?' + query.join('&') );
-    		req.send();
+		$.ajax( {
+			url : reittiopas.REITTIOPAS,
+			data: parameters,
+			dataType : 'json',
+			success : function( data ) { success( data ); },
+			error : function() { alert('error'); }
+		} );
 	},
 
 

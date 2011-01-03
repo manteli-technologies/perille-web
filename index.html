@@ -60,13 +60,14 @@ $('.address-entry').keyup( function() {
 
 // geolocation when pressed
 $('.geolocation').click( function() {
+	var button = $(this);
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(
 			function(position){
 				reittiopas.location_to_address( position.coords.latitude, position.coords.longitude, function(json) {
-					// temporary hack
-					$('#from').val( json[0].name );
-					$.data( '#from' , 'location', json[0].coords );
+					var field = button.parent().find('.address-entry');
+					field.val( json[0].name );
+					$.data( field , 'location', json[0].coords );
 				}); },
 			function(){
 				alert('Nok!');

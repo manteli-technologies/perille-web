@@ -20,12 +20,12 @@ reittiopas = {
 	},
 
 
-	location_to_address : function( latitude, longitude ) {
+	location_to_address : function( latitude, longitude, success ) {
 		var parameters = {};
 		parameters.request = 'reverse_geocode';
 		parameters.coordinate = longitude + ',' + latitude;
 		reittiopas._http_get(parameters, function(json) {
-			console.log(json[0].city)
+			success( json );
 		} );
 
 	},

@@ -22,14 +22,14 @@ Aaa
 <div class='entry'>
 <input id='from' class='address-entry' />
 
-<span class='button'>My location</span>
+<span class='button geolocation'>My location</span>
 
 </div>
 
 <div class='entry'>
 <input id='to' class='address-entry' />
 
-<span class='button'>My location</span>
+<span class='button geolocation'>My location</span>
 
 </div>
 
@@ -58,13 +58,23 @@ $('.address-entry').keyup( function() {
 	reittiopas.address_to_location( address , function(data) {} );
 } );
 
-// geolocation
-
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition( function(position){ console.log('Hello' + position.coords.latitude); }, function(){ alert('Nok!'); });
-} else {
-  // 
-}
+// geolocation when pressed
+$('.geolocation').click( function() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(
+			function(position){
+				reittiopas.location_to_address( position.coords.latitude, position.coords.longitude, function(json) {
+					// temporary hack
+					$('#from').val( json[0].name );
+					$.data( '#from' , 'location', json[0].coords );
+				}); },
+			function(){
+				alert('Nok!');
+			}
+		);
+	} else {
+	}
+} );
  
 
 </script>

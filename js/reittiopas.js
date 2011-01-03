@@ -33,7 +33,7 @@ reittiopas = {
 		var parameters = {};
 		parameters.request = 'reverse_geocode';
 		parameters.coordinate = longitude + ',' + latitude;
-		_http_get(parameters, function(json) {
+		reittiopas._http_get(parameters, function(json) {
 			console.log(json[0].city)
 		} );
 
@@ -43,7 +43,7 @@ reittiopas = {
 		var parameters = {};
 		parameters.request = 'geocode';
 		parameters.key = term;
-		_http_get(parameters, success );
+		reittiopas._http_get(parameters, success );
 	},
 
 	route : function(from, to, time, mode, success) {
@@ -57,6 +57,6 @@ reittiopas = {
 		parameters.timetype = mode;
 		parameters.show = 5;
 		parameters.detail = 'limited';
-		_http_get( parameters, success );
+		reittiopas._http_get( parameters, success );
 	}
 }

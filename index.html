@@ -16,10 +16,16 @@
 
 <div class='entry'>
 <input id='from' class='address-entry' />
+
+<span class='button'>My location</span>
+
 </div>
 
 <div class='entry'>
 <input id='to' class='address-entry' />
+
+<span class='button'>My location</span>
+
 </div>
 
 <div class='entry'>
@@ -28,6 +34,16 @@
 </div>
 
 <script type='text/javascript'>
+
+// buttonize all buttons
+$('.button').button();
+
+var now = new Date();
+
+$('#date').datepicker( {
+	dateFormat : 'dd.mm.yy'
+} );
+$('#date').val( now.getDate() + '.' + (now.getMonth() + 1) + '.' + now.getFullYear() );
 
 $('.address-entry').keyup( function() {
 	var t = $(this);
@@ -50,7 +66,7 @@ if (navigator.geolocation) {
 
 </div>
 
-<div id='resultpane'>
+<div id='resultpane' style='display:none'>
 
 <div id='map' style='width:400px;height:400px'></div>
 

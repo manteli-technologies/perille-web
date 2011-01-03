@@ -13,17 +13,38 @@
 <div id='entrypane' class='wrapper'>
 
 <div class='entry'>
-<input id='from' />
+<input id='from' class='address-entry' />
 </div>
 
 <div class='entry'>
-<input id='to' />
+<input id='to' class='address-entry' />
 </div>
 
 <div class='entry'>
 <input id='date' />
 <input id='time' />
 </div>
+
+<script type='text/javascript'>
+
+$('.address-entry').keyup( function() {
+	var t = $(this);
+	var address = t.val();
+	// only search when there are 3 or more characters
+	if( address.length < 3 ) return;
+	reittiopas.address_to_location( address , function(data) {} );
+} );
+
+// geolocation
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition( function(position){ console.log('Hello' + position.coords.latitude); }, function(){ alert('Nok!'); });
+} else {
+  // 
+}
+ 
+
+</script>
 
 </div>
 

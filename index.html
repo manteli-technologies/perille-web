@@ -16,7 +16,7 @@
 <div id='entrypane' class='wrapper'>
 
 <div id='results'>
-Aaa
+
 </div>
 
 <div class='entry'>
@@ -59,8 +59,21 @@ $('.address-entry').keyup( function() {
 	var t = $(this);
 	var address = t.val();
 	// only search when there are 3 or more characters
-	if( address.length < 3 ) return;
-	reittiopas.address_to_location( address , function(data) {} );
+	if( address.length < 3 ) { return; }
+	reittiopas.address_to_location( address , function(data) {
+		// hack
+		var temp = data.map( function(data) {
+			return { label: data.name, coords: data.coords };
+		} );
+		t.autocomplete( 'option', 'source', temp );
+	} );
+} );
+
+$('.address-entry').autocomplete( { 
+	minLenght : 3,
+	select: function(event, ui) {
+		$.data( $(this) , 'location', ui.item.coords );
+	}
 } );
 
 // geolocation when pressed

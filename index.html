@@ -72,7 +72,7 @@ $('.address-entry').keyup( function() {
 $('.address-entry').autocomplete( { 
 	minLenght : 3,
 	select: function(event, ui) {
-		$.data( $(this) , 'location', ui.item.coords );
+		$(this).data('location', ui.item.coords );
 	}
 } );
 
@@ -85,7 +85,7 @@ $('.geolocation').click( function() {
 				reittiopas.location_to_address( position.coords.latitude, position.coords.longitude, function(json) {
 					var field = button.parent().find('.address-entry');
 					field.val( json[0].name );
-					$.data( field , 'location', json[0].coords );
+					field.data('location', json[0].coords );
 				}); },
 			function(){
 				alert('Nok!');

@@ -96,7 +96,18 @@ $('.geolocation').click( function() {
 } );
 
 $('#search').click( function() {
-
+	$('#entrypane').hide('drop');
+	reittiopas.route( $('#from').data('location'), $('#to').data('location'), new Date(), '', function(response) {
+		console.log(response);
+		$('#resultpane').show('drop');
+		$.each( response, function( i, route ) {
+			var list = $('<ol>');
+			$.each( route[0].legs , function(i, leg) {
+				list.append( '<li>' + leg.type + '</li>' );
+			} );
+			$('#routes').append( $('<li>').append( list ) );
+		} );
+	} );
 } ); 
 
 </script>
@@ -105,8 +116,12 @@ $('#search').click( function() {
 
 <div id='resultpane' style='display:none'>
 
-<div id='map' style='width:400px;height:400px'></div>
+<ul id='routes'>
 
+</ul>
+
+
+<div id='map' style='width:400px;height:400px'></div>
 <script type='text/javascript'>
 var map = new ovi.mapsapi.map.Display(document.getElementById("map"), {
   components: [ new ovi.mapsapi.map.component.Behavior(),

@@ -97,15 +97,18 @@ $('.geolocation').click( function() {
 
 $('#search').click( function() {
 	$('#entrypane').hide('drop');
-	reittiopas.route( $('#from').data('location'), $('#to').data('location'), new Date(), '', function(response) {
+	reittiopas.route( $('#from').data('location'), $('#to').data('location'), new Date(), 'arrival', function(response) {
 		console.log(response);
 		$('#resultpane').show('drop');
 		$.each( response, function( i, route ) {
-			var list = $('<ol>');
+			var item = $('<li>');
+			item.html( route[0].duration );
+			var parts = $('<ol>');
 			$.each( route[0].legs , function(i, leg) {
-				list.append( '<li>' + leg.type + '</li>' );
+				parts.append( '<li>' + leg.code + '</li>' );
 			} );
-			$('#routes').append( $('<li>').append( list ) );
+			item.append( parts );
+			$('#routes').append( item );
 		} );
 	} );
 } ); 
@@ -121,7 +124,7 @@ $('#search').click( function() {
 </ul>
 
 
-<div id='map' style='width:400px;height:400px'></div>
+<div id='map' style='width:400px;height:400px; float: rigth;'></div>
 <script type='text/javascript'>
 var map = new ovi.mapsapi.map.Display(document.getElementById("map"), {
   components: [ new ovi.mapsapi.map.component.Behavior(),
@@ -132,7 +135,6 @@ var map = new ovi.mapsapi.map.Display(document.getElementById("map"), {
   center: [52.51, 13.4]
 });
 </script>
-
 </div>
 
 </body>

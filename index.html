@@ -102,7 +102,8 @@ $('#search').click( function() {
 		$('#resultpane').show('drop');
 		$.each( response, function( i, route ) {
 			var item = $('<li>');
-			item.html( route[0].duration );
+			var min = new Date( route[0].legs[0].locs[0].arrTime );
+			item.html( min + ' ' + route[0].duration );
 			var parts = $('<ol>');
 			$.each( route[0].legs , function(i, leg) {
 				parts.append( '<li>' + leg.code + '</li>' );
@@ -117,14 +118,14 @@ $('#search').click( function() {
 
 </div>
 
-<div id='resultpane' style='display:none'>
+<div id='resultpane' style='display:none' class='wrapper'>
 
 <ul id='routes'>
 
 </ul>
 
 
-<div id='map' style='width:400px;height:400px; float: rigth;'></div>
+<!-- <div id='map' style='width:400px;height:400px; float: rigth;'></div> -->
 <script type='text/javascript'>
 var map = new ovi.mapsapi.map.Display(document.getElementById("map"), {
   components: [ new ovi.mapsapi.map.component.Behavior(),

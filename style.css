@@ -4,6 +4,11 @@ body {
 	font-size: 1.1em;
 }
 
+.wrapper {
+	margin: 10px 5%;
+	width: 90%;
+}
+
 #results {
 	float: right;
 }

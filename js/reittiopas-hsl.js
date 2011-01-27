@@ -2,8 +2,8 @@ hsl = {
 
 
 	decode_code : function(type, code) {
-		if( type == 'walk' ) return;
-		var datatype = code.charAt(0);
+		if( type == 'walk' ) return 'walk';
+		return hsl.busData( code );
 	},
 
 	busData: function(code) {

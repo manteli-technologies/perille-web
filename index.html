@@ -113,7 +113,7 @@ $('#search').click( function() {
 			item.html( min + ' ' + route[0].duration );
 			var parts = $('<ol>');
 			$.each( route[0].legs , function(i, leg) {
-				parts.append( '<li>' + leg.code + '</li>' );
+				parts.append( '<li>' + hsl.decode_code( leg.type, leg.code ) + '</li>' );
 			} );
 			item.append( parts );
 			$('#routes').append( item );

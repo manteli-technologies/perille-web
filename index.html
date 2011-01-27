@@ -52,15 +52,19 @@
 // buttonize all buttons
 $('.button').button();
 
+function _addLeadingZero(digit){
+	return digit < 10 ? '0' + digit : digit;
+}
+
 var now = new Date();
 
 $('#date').datepicker( {
 	dateFormat : 'dd.mm.yy'
 } );
-$('#date').val( now.getDate() + '.' + (now.getMonth() + 1) + '.' + now.getFullYear() );
+$('#date').val( _addLeadingZero(now.getDate()) + '.' + _addLeadingZero(now.getMonth() + 1) + '.' + now.getFullYear() );
 
 $('#time').timepicker();
-$('#time').val( now.getHours() + ':' + now.getMinutes() );
+$('#time').val( _addLeadingZero(now.getHours()) + ':' + _addLeadingZero(now.getMinutes()) );
 
 $('.address-entry').keyup( function() {
 	var t = $(this);

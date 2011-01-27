@@ -1,18 +1,15 @@
 hsl = {
 
-	datatypes : [	hsl.busData,
-			hsl.busData, 
-			hsl.trainData, 
-			hsl.busData,
-			hsl.busData
-		     ],
 
-	decode_code : function(code) {
+	decode_code : function(type, code) {
+		if( type == 'walk' ) return;
 		var datatype = code.charAt(0);
 	},
 
 	busData: function(code) {
-		
+		var line = code.slice(1,5);
+		line = hsl._removeZeros(line);
+		return line;
 	},
 
 	trainData: function(code) {
@@ -23,5 +20,6 @@ hsl = {
 		while( line[0] == '0' ) {
 			line = line.slice(1);
 		}
+		return line;
 	}
 }

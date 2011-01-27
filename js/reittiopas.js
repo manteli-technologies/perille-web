@@ -43,11 +43,10 @@ reittiopas = {
 		parameters.from = from;
 		parameters.to = to;
 		// TODO may be broken
-		parameters.date = '' + time.getFullYear() + (time.getMonth() + 1) + time.getDate();
-		parameters.time = '' + time.getHours() + time.getMinutes();
-		parameters.timetype = mode;
+		// parameters.date = '' + time.getFullYear() + (time.getMonth() + 1) + time.getDate();
+		// parameters.time = '' + time.getHours() + time.getMinutes();
+		// parameters.timetype = mode;
 		parameters.show = 5;
-		parameters.detail = 'limited';
 		reittiopas._http_get( parameters, success );
 	}
 }

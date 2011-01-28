@@ -1,5 +1,18 @@
 hsl = {
 
+	// takes in a single leg and extaxts start/end times of that + type
+	decode : function( legData ) {
+		var leg = {};
+		var firstLeg = legData.locs[0];
+		var lastLeg = legData.locs[ legData.locs.length -1 ];
+		leg.firstLocation = firstLeg.coord;
+		leg.firstTime = hsl._parseTime( firstLeg.arrTime );
+		leg.lastLocation = lastLeg.coord;
+		leg.lastTime = hsl._parseTime( lastLeg.depTime );
+		leg.type = legData.type; // not yet anything fancy
+		leg.code = hsl.decode_code( legData.type, legData.code );
+		return leg;
+	},
 
 	decode_code : function(type, code) {
 		if( type == 'walk' ) return 'walk';

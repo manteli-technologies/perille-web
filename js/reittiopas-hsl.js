@@ -20,7 +20,7 @@ hsl = {
 		// HSL returns dates as yyyymmddhhmm -string
 		var t = timeString;
 		return new Date( t.slice(0,4) , // yyyy
-				 t.slice(4,6) , // mm
+				 parseInt( t.slice(4,6) ) - 1 , // mm, starst from 0
 				 t.slice(6,8) , // dd
 				 t.slice(8,10)  , // hh
 				 t.slice(10,12) , // mm

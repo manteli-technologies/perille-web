@@ -106,6 +106,12 @@ $('.geolocation').click( function() {
 	}
 } );
 
+// customize the Date toString-function
+Date.prototype.toString = function(){
+   // hh:mm
+   return _addLeadingZero(this.getHours()) + ':' + _addLeadingZero(this.getMinutes());
+}
+
 $('#search').click( function() {
 	$('#entrypane').hide('drop');
 	reittiopas.route( $('#from').data('location'), $('#to').data('location'), new Date(), 'arrival', function(response) {
@@ -113,17 +119,18 @@ $('#search').click( function() {
 		$('#resultpane').show('drop');
 		$.each( response, function( i, route ) {
 			var item = $('<li>');
-			var min = new Date( route[0].legs[0].locs[0].arrTime );
+			var min = hsl._parseTime( route[0].legs[0].locs[0].arrTime );
 			item.html( min + ' ' + route[0].duration );
 			var parts = $('<ol>');
 			$.each( route[0].legs , function(i, leg) {
-				parts.append( '<li>' + hsl.decode_code( leg.type, leg.code ) + '</li>' );
+				leg = hsl.decode( leg );
+				parts.append( '<li>' + leg.type + ' ' + leg.firstTime + '-' + leg.lastTime + '</li>' );
 			} );
 			item.append( parts );
 			$('#routes').append( item );
 		} );
 	} );
-} ); 
+} );
 
 </script>
 

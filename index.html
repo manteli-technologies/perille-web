@@ -55,19 +55,15 @@
 // buttonize all buttons
 $('.button').button();
 
-function _addLeadingZero(digit){
-	return digit < 10 ? '0' + digit : digit;
-}
-
 var now = new Date();
 
 $('#date').datepicker( {
 	dateFormat : 'dd.mm.yy'
 } );
-$('#date').val( _addLeadingZero(now.getDate()) + '.' + _addLeadingZero(now.getMonth() + 1) + '.' + now.getFullYear() );
+$('#date').val( now.date() + '.' + now.month() + '.' + now.year() );
 
 $('#time').timepicker();
-$('#time').val( _addLeadingZero(now.getHours()) + ':' + _addLeadingZero(now.getMinutes()) );
+$('#time').val( now.hours() + ':' + now.minutes() );
 
 $('.address-entry').keyup( function() {
 	var t = $(this);
@@ -108,12 +104,6 @@ $('.geolocation').click( function() {
 	} else {
 	}
 } );
-
-// customize the Date toString-function
-Date.prototype.toString = function(){
-   // hh:mm
-   return _addLeadingZero(this.getHours()) + ':' + _addLeadingZero(this.getMinutes());
-}
 
 $('#search').click( function() {
 	$('#entrypane').hide('drop');

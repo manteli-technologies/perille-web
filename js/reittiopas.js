@@ -45,7 +45,7 @@ reittiopas = {
 		// TODO may be broken
 		parameters.date = time.year() + time.month()  + time.date();
 		parameters.time = time.hours() + time.minutes();
-		// parameters.timetype = mode;
+		parameters.timetype = mode;
 		parameters.show = 5;
 		reittiopas._http_get( parameters, success );
 	}

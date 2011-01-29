@@ -17,7 +17,11 @@ Date.prototype.date = function() {
 }
 
 Date.prototype.month = function() { 
-        return this._leadingZeros( this.getMonth() );
+        return this._leadingZeros( this.getMonth() + 1 );
+}
+
+Date.prototype.year = function() {
+        return '' + this.getFullYear();
 }
 
 // customize the Date toString-function

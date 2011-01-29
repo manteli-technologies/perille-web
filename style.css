@@ -19,3 +19,9 @@ body {
 	margin-top: 10px;
 	max-width: 50%;
 }
+
+.logo {
+	color: blue;
+	height: 125%;
+	font-family: 'comic sans ms', 'century gothic';
+}

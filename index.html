@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<span class='logo'>Perille</span> &ndash; uuden ajan reittiopas
+<span class='logo'>Perille</span> &ndash; next generation Reittiopas
 
 <div id='entrypane' class='wrapper'>
 
@@ -46,6 +46,15 @@
 
 <input id='time' size='5' />
 
+<span id='mode-selection'>
+	<input type="radio" id="mode-selection-arrive" name="mode-selection-radio" value='arrival' /><label for="mode-selection-arrive">Arrive</label>
+	<input type="radio" id="mode-selection-leave" name="mode-selection-radio" value='departure' checked="checked" /><label for="mode-selection-leave">Leave</label>
+</span>
+
+</div>
+
+<div class='entry'>
+
 <span id='search' class='button'>Search</span>
 
 </div>
@@ -54,6 +63,8 @@
 
 // buttonize all buttons
 $('.button').button();
+
+$('#mode-selection').buttonset();
 
 $('document').ready( function() {
 

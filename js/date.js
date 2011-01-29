@@ -1,0 +1,27 @@
+/** re-implement parts of Date **/
+
+Date.prototype._leadingZeros = function( digit ) {
+	return digit < 10 ? '0' + digit : '' + digit;
+}
+
+Date.prototype.minutes = function() {
+	return this._leadingZeros( this.getMinutes() );
+}
+
+Date.prototype.hours = function() { 
+        return this._leadingZeros( this.getHours() );
+}
+
+Date.prototype.date = function() { 
+        return this._leadingZeros( this.getDate() );
+}
+
+Date.prototype.month = function() { 
+        return this._leadingZeros( this.getMonth() );
+}
+
+// customize the Date toString-function
+Date.prototype.toString = function(){
+   // hh:mm
+   return this.hours() + ':' + this.minutes();
+}

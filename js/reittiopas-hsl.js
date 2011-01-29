@@ -9,14 +9,14 @@ hsl = {
 		leg.firstTime = hsl._parseTime( firstLeg.arrTime );
 		leg.lastLocation = lastLeg.coord;
 		leg.lastTime = hsl._parseTime( lastLeg.depTime );
-		leg.type = legData.type; // not yet anything fancy
-		leg.code = hsl.decode_code( legData.type, legData.code );
+		leg.type = hsl.decode_code( legData.type, legData.code ).type
+		leg.code = hsl.decode_code( legData.type, legData.code ).code;
 		return leg;
 	},
 
 	decode_code : function(type, code) {
-		if( type == 'walk' ) return 'walk';
-		return hsl.busData( code );
+		if( type == 'walk' ) return { code: '', type : 'walk' };
+		return { type: 'transport_type', code: hsl.busData( code ) };
 	},
 
 	busData: function(code) {

@@ -129,7 +129,7 @@ $('#search').click( function() {
 			var parts = $('<ol>');
 			$.each( route[0].legs , function(i, leg) {
 				leg = hsl.decode( leg );
-				parts.append( '<li>' + leg.type + ' ' + leg.firstTime + '-' + leg.lastTime + '</li>' );
+				parts.append( '<li>' + leg.type + ' ' + leg.code + ' ' + leg.firstTime + '-' + leg.lastTime + '</li>' );
 			} );
 			item.append( parts );
 			$('#routes').append( item );

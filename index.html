@@ -121,8 +121,9 @@ $('#search').click( function() {
 		$('#resultpane').show('drop', 'slow');
 		$.each( response, function( i, route ) {
 			var item = $('<li>');
-			var min = hsl._parseTime( route[0].legs[0].locs[0].arrTime );
-			item.html( min + ' ' + route[0].duration );
+			var end = hsl.decode( route[0].legs[ route[0].legs.length - 1 ] )
+			var start = hsl.decode( route[0].legs[0] );
+			item.html( start.firstTime + '-' + end.lastTime );
 			var parts = $('<ol>');
 			$.each( route[0].legs , function(i, leg) {
 				leg = hsl.decode( leg );

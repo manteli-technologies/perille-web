@@ -55,8 +55,12 @@
 // buttonize all buttons
 $('.button').button();
 
-var now = new Date();
+$('document').ready( function() {
 
+// intialize only once (failed in Chrome atleast):
+
+console.log('resitting dates!');
+var now = new Date();
 $('#date').datepicker( {
 	dateFormat : 'dd.mm.yy'
 } );
@@ -64,6 +68,8 @@ $('#date').val( now.date() + '.' + now.month() + '.' + now.year() );
 
 $('#time').timepicker();
 $('#time').val( now.hours() + ':' + now.minutes() );
+
+} );
 
 $('.address-entry').keyup( function() {
 	var t = $(this);
@@ -106,18 +112,12 @@ $('.geolocation').click( function() {
 } );
 
 $('#search').click( function() {
-	$('#entrypane').hide('drop');
-	$('#wait-icon').show();
-	$('#wait-icon').effect('pulsate');
 	// get the selected time variables
 	var date = $('#date').val().split('.');
 	var time = $('#time').val().split(':');
 	date = date.map( function(a,b) { return parseInt( a ); } );
 	time = time.map( function(a,b) { return parseInt( a ); } );
 	var searchDate = new Date( date[2] , date[1], date[0], time[0], time[1], 0, 0 );
-	console.log( date );
-	console.log( time );
-	console.log( searchDate );
 	reittiopas.route( $('#from').data('location'), $('#to').data('location'), searchDate, 'arrival', function(response) {
 		$('#wait-icon').hide('explode');
 		$('#resultpane').show('drop', 'slow');
@@ -135,6 +135,9 @@ $('#search').click( function() {
 			$('#routes').append( item );
 		} );
 	} );
+        $('#entrypane').hide('drop');
+        $('#wait-icon').show();
+        $('#wait-icon').effect('pulsate');
 } );
 
 </script>

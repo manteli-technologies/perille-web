@@ -43,8 +43,8 @@ reittiopas = {
 		parameters.from = from;
 		parameters.to = to;
 		// TODO may be broken
-		// parameters.date = '' + time.getFullYear() + (time.getMonth() + 1) + time.getDate();
-		// parameters.time = '' + time.getHours() + time.getMinutes();
+		parameters.date = time.year() + time.month()  + time.date();
+		parameters.time = time.hours() + time.minutes();
 		// parameters.timetype = mode;
 		parameters.show = 5;
 		reittiopas._http_get( parameters, success );

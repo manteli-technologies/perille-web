@@ -109,7 +109,16 @@ $('#search').click( function() {
 	$('#entrypane').hide('drop');
 	$('#wait-icon').show();
 	$('#wait-icon').effect('pulsate');
-	reittiopas.route( $('#from').data('location'), $('#to').data('location'), new Date(), 'arrival', function(response) {
+	// get the selected time variables
+	var date = $('#date').val().split('.');
+	var time = $('#time').val().split(':');
+	date = date.map( function(a,b) { return parseInt( a ); } );
+	time = time.map( function(a,b) { return parseInt( a ); } );
+	var searchDate = new Date( date[2] , date[1], date[0], time[0], time[1], 0, 0 );
+	console.log( date );
+	console.log( time );
+	console.log( searchDate );
+	reittiopas.route( $('#from').data('location'), $('#to').data('location'), searchDate, 'arrival', function(response) {
 		$('#wait-icon').hide('explode');
 		$('#resultpane').show('drop', 'slow');
 		$.each( response, function( i, route ) {

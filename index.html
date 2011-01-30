@@ -68,6 +68,9 @@ $('#mode-selection').buttonset();
 
 $('document').ready( function() {
 
+// initialize hsl (set up correct values for mapping)
+hsl.init();
+
 // intialize only once (failed in Chrome atleast):
 
 var now = new Date();

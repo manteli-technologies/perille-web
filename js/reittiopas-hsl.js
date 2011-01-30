@@ -1,5 +1,24 @@
 hsl = {
 
+	_types : [],
+
+	init : function() {
+		hsl._types[1] = hsl.busData;
+		hsl._types[2] = hsl.tramData;
+		hsl._types[3] = hsl.busData;
+		hsl._types[4] = hsl.busData;
+		hsl._types[5] = hsl.busData;
+		hsl._types[6] = hsl.metroData;
+		hsl._types[7] = hsl.ferryData;
+		hsl._types[8] = hsl.busData;
+		hsl._types[12] = hsl.trainData;
+		hsl._types[21] = hsl.busData;
+		hsl._types[22] = hsl.busData;
+		hsl._types[23] = hsl.busData;
+		hsl._types[24] = hsl.busData;
+		hsl._types[25] = hsl.busData;
+	},
+
 	// takes in a single leg and extaxts start/end times of that + type
 	decode : function( legData ) {
 		var leg = {};
@@ -16,17 +35,29 @@ hsl = {
 
 	decode_code : function(type, code) {
 		if( type == 'walk' ) return { code: '', type : 'walk' };
-		return { type: 'transport_type', code: hsl.busData( code ) };
+		return hsl._types[type](code);
 	},
 
 	busData: function(code) {
 		var line = code.slice(1,5);
 		line = hsl._removeZeros(line);
-		return line;
+		return { type: 'bus', code: line };
 	},
 
 	trainData: function(code) {
+		return { type: 'train', code: ''}
+	},
 
+	tramData: function(code) {
+                return { type: 'tram', code: ''}
+	},
+
+	metroData: function(code){
+                return { type: 'metro', code: ''}
+	},
+
+	ferryData: function(code) {
+                return { type: 'ferry', code: ''}
 	},
 
 	_parseTime: function(timeString){

@@ -117,7 +117,17 @@ $('.geolocation').click( function() {
 					field.data('location', json[0].coords );
 				}); },
 			function(){
-				alert('Nok!');
+				var div = $('<div>');
+				div.html( 'Geeez! I can\'t figure out where you are. You\'re on your own now! Sorry :(');
+				div.dialog({
+					modal: true,
+					buttons: {
+						Ok: function() {
+							$( this ).dialog( "close" );
+						} 
+					}
+				});
+				$('.geolocation').button('disable');
 			}
 		);
 	} else {

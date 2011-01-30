@@ -139,13 +139,21 @@ $('#search').click( function() {
 			var item = $('<li>');
 			var end = hsl.decode( route[0].legs[ route[0].legs.length - 1 ] )
 			var start = hsl.decode( route[0].legs[0] );
-			item.html( start.firstTime + '-' + end.lastTime );
+			item.html( start.first.time + '-' + end.last.time );
+			console.log( route[0].legs[0] );
+			console.log( start );
 			var parts = $('<ol>');
 			$.each( route[0].legs , function(i, leg) {
 				leg = hsl.decode( leg );
-				parts.append( '<li>' + leg.type + ' ' + leg.code + ' ' + leg.firstTime + '-' + leg.lastTime + '</li>' );
+				var detailView = '<span class="detail">' + leg.first.name + ' @ ' + leg.first.time + ' - ' + leg.last.name + ' @ ' + leg.last.time + '</span>';
+				parts.append( '<li>' + leg.type + ' ' + leg.code + ' ' + detailView + '</li>' );
 			} );
 			item.append( parts );
+			item.hover( function() {
+				$(this).find('.detail').fadeIn();
+			}, function() {
+				$(this).find('.detail').fadeOut();
+			} );
 			$('#routes').append( item );
 		} );
 	} );

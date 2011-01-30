@@ -49,7 +49,9 @@ hsl = {
 	},
 
 	trainData: function(code) {
-		return { type: 'train', code: ''}
+		console.log( code );
+		var code = code[4];
+		return { type: 'train', code: code}
 	},
 
 	tramData: function(code) {

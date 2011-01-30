@@ -29,14 +29,14 @@
 <div class='entry'>
 <input id='from' class='address-entry' />
 
-<span class='button geolocation'>My location</span>
+<span class='button geolocation right'>My location</span>
 
 </div>
 
 <div class='entry'>
 <input id='to' class='address-entry' />
 
-<span class='button geolocation'>My location</span>
+<span class='button geolocation right'>My location</span>
 
 </div>
 
@@ -46,7 +46,7 @@
 
 <input id='time' size='5' />
 
-<span id='mode-selection'>
+<span id='mode-selection' class='right'>
 	<input type="radio" id="mode-selection-arrive" name="mode-selection-radio" value='arrival' /><label for="mode-selection-arrive">Arrive</label>
 	<input type="radio" id="mode-selection-leave" name="mode-selection-radio" value='departure' checked="checked" /><label for="mode-selection-leave">Leave</label>
 </span>
@@ -70,7 +70,6 @@ $('document').ready( function() {
 
 // intialize only once (failed in Chrome atleast):
 
-console.log('resitting dates!');
 var now = new Date();
 $('#date').datepicker( {
 	dateFormat : 'dd.mm.yy'

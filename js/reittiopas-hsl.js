@@ -38,6 +38,7 @@ hsl = {
 	},
 
 	decode_code : function(type, code) {
+		console.log( code );
 		if( type == 'walk' ) return { code: '', type : 'walk' };
 		return hsl._types[type](code);
 	},
@@ -49,7 +50,6 @@ hsl = {
 	},
 
 	trainData: function(code) {
-		console.log( code );
 		var code = code[4];
 		return { type: 'train', code: code}
 	},
@@ -59,7 +59,13 @@ hsl = {
 	},
 
 	metroData: function(code){
-                return { type: 'metro', code: ''}
+		hsl.kissa = code;
+		if( code[6] == 2 ) {
+			code = 'Ruoholahti';
+		} else {
+			code = code[4] == 'M' ? 'Mellunm&auml;ki': 'Vuosaari';
+		}
+                return { type: 'metro', code: code}
 	},
 
 	ferryData: function(code) {

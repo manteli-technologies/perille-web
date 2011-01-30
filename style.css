@@ -25,3 +25,7 @@ body {
 	height: 125%;
 	font-family: 'comic sans ms', 'century gothic';
 }
+
+.detail {
+	display: none;
+}

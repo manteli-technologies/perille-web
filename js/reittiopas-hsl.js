@@ -38,7 +38,6 @@ hsl = {
 	},
 
 	decode_code : function(type, code) {
-		console.log( code );
 		if( type == 'walk' ) return { code: '', type : 'walk' };
 		return hsl._types[type](code);
 	},
@@ -55,7 +54,8 @@ hsl = {
 	},
 
 	tramData: function(code) {
-                return { type: 'tram', code: ''}
+		var code = code.slice(3,5).trim();
+                return { type: 'tram', code: code}
 	},
 
 	metroData: function(code){

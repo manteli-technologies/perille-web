@@ -1,5 +1,5 @@
 reittiopas = {
-	REITTIOPAS : '/ropba',
+	REITTIOPAS : '/ropb',
 	USER : 'matnel',
 	PASS : 'tchrb6ch',
 	COORDINATES : 'wgs84', // by default always use this format

@@ -111,6 +111,7 @@ $('.geolocation').click( function() {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(
 			function(position){
+				console.log( position );
 				reittiopas.location_to_address( position.coords.latitude, position.coords.longitude, function(json) {
 					var field = button.parent().find('.address-entry');
 					field.val( json[0].name );
@@ -150,8 +151,6 @@ $('#search').click( function() {
 			var end = hsl.decode( route[0].legs[ route[0].legs.length - 1 ] )
 			var start = hsl.decode( route[0].legs[0] );
 			item.html( start.first.time + '-' + end.last.time );
-			console.log( route[0].legs[0] );
-			console.log( start );
 			var parts = $('<ol>');
 			$.each( route[0].legs , function(i, leg) {
 				leg = hsl.decode( leg );

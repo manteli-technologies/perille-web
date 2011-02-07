@@ -1,5 +1,5 @@
 reittiopas = {
-	REITTIOPAS : '/ropb',
+	REITTIOPAS : '/ropba',
 	USER : 'matnel',
 	PASS : 'tchrb6ch',
 	COORDINATES : 'wgs84', // by default always use this format
@@ -15,7 +15,12 @@ reittiopas = {
 			data: parameters,
 			dataType : 'json',
 			success : function( data ) { success( data ); },
-			error : function() { error('I did something bad! Try to refresh the window.'); }
+			error : function(code) { if( code.status == 503 ) {
+					error('Time is up. We have reached the hourly limit on requests.. As said, this is still in alpha.');
+				} else {
+					error('I did something bad! Server said ' + code.status + ' back to me. Try to refresh the window.');
+				}
+			}
 		} );
 	},
 

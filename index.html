@@ -60,6 +60,20 @@
 </div>
 
 <script type='text/javascript'>
+// human error
+function error(msg){
+	var div = $('<div>');
+	div.html( msg );
+	div.dialog({
+		modal: true,
+		buttons: {
+			Ok: function() {
+				$( this ).dialog( "close" );
+			}
+		}
+	});
+}
+
 
 // buttonize all buttons
 $('.button').button();
@@ -118,20 +132,13 @@ $('.geolocation').click( function() {
 					field.data('location', json[0].coords );
 				}); },
 			function(){
-				var div = $('<div>');
-				div.html( 'Geeez! I can\'t figure out where you are. You\'re on your own now! Sorry :(');
-				div.dialog({
-					modal: true,
-					buttons: {
-						Ok: function() {
-							$( this ).dialog( "close" );
-						} 
-					}
-				});
+				error( 'Geeez! I can\'t figure out where you are. You\'re on your own now! Sorry :(');
 				$('.geolocation').button('disable');
 			}
 		);
 	} else {
+		error( 'Your browser doesn\'t support geolocation. Try to update your browser!' );
+		$('.geolocation').button('disable');
 	}
 } );
 

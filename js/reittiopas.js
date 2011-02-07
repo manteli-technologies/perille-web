@@ -15,7 +15,7 @@ reittiopas = {
 			data: parameters,
 			dataType : 'json',
 			success : function( data ) { success( data ); },
-			error : function() { alert('error'); }
+			error : function() { error('I did something bad! Try to refresh the window.'); }
 		} );
 	},
 

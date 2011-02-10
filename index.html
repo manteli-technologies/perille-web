@@ -184,6 +184,14 @@ $('#search').click( function() {
 
 <div id='resultpane' style='display:none' class='wrapper'>
 
+<span id='back-button' class='button' style='float: right;'>Go back!</span>
+
+<script type='text/javascript'>
+	$('#back-button').click( function(){
+		$('#entrypane').show('drop', 'slow');
+		$('#resultpane').hide();
+	});
+</script>
 
 <ul id='routes'>
 

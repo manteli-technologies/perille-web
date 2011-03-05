@@ -170,11 +170,12 @@ $('#search').click( function() {
 			var item = $('<li>');
 			var end = hsl.decode( route[0].legs[ route[0].legs.length - 1 ] )
 			var start = hsl.decode( route[0].legs[0] );
-			item.html( start.first.time + '-' + end.last.time );
+			kissa = start.first.time
+			item.html( start.first.time.toString() + '-' + end.last.time.toString() );
 			var parts = $('<ol>');
 			$.each( route[0].legs , function(i, leg) {
 				leg = hsl.decode( leg );
-				var detailView = '<span class="detail">' + leg.first.name + ' @ ' + leg.first.time + ' - ' + leg.last.name + ' @ ' + leg.last.time + '</span>';
+				var detailView = '<span class="detail">' + leg.first.name + ' @ ' + leg.first.time.toString() + ' - ' + leg.last.name + ' @ ' + leg.last.time.toString() + '</span>';
 				parts.append( '<li>' + leg.type + ' ' + leg.code + ' ' + detailView + '</li>' );
 			} );
 			item.append( parts );

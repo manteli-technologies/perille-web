@@ -72,6 +72,18 @@ function error(msg){
 	});
 }
 
+// rotate certain text in given field
+function rotateText( field, text ) {
+	var ii = 0;
+	var timer = setInterval( function() {
+		var i = ii % text.length;
+                var temp = text.slice(0, i) + '|' + text.slice(i + 1, text.length);
+		console.log( temp );
+		field.val(temp);
+		ii++; 
+	} , 250 );
+	return timer;
+}
 
 // buttonize all buttons
 $('.button').button();
@@ -120,21 +132,24 @@ $('.address-entry').autocomplete( {
 // geolocation when pressed
 $('.geolocation').click( function() {
 	var button = $(this);
+	var field = button.parent().find('.address-entry');
+	var timer = rotateText( field, 'Searching' );
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(
 			function(position){
-				console.log( position );
 				reittiopas.location_to_address( position.coords.latitude, position.coords.longitude, function(json) {
-					var field = button.parent().find('.address-entry');
+					clearInterval( timer );
 					field.val( json[0].name );
 					field.data('location', json[0].coords );
 				}); },
 			function(){
+				clearInterval( timer );
 				error( 'Geeez! I can\'t figure out where you are. You\'re on your own now! Sorry :(');
 				$('.geolocation').button('disable');
 			}
 		);
 	} else {
+		clearInterval( timer );
 		error( 'Your browser doesn\'t support geolocation. Try to update your browser!' );
 		$('.geolocation').button('disable');
 	}

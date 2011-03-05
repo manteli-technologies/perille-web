@@ -78,7 +78,6 @@ function rotateText( field, text ) {
 	var timer = setInterval( function() {
 		var i = ii % text.length;
                 var temp = text.slice(0, i) + '|' + text.slice(i + 1, text.length);
-		console.log( temp );
 		field.val(temp);
 		ii++; 
 	} , 250 );

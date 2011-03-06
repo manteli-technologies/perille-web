@@ -15,7 +15,8 @@ body {
 
 .entry {
 	border: 1px solid blue;
-	padding: 5px;
+	padding: 7px;
+	border-radius: 7px;
 	margin-top: 10px;
 	min-width: 360px; /* from Nokia display */
 	width: 70%;

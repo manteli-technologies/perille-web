@@ -31,3 +31,10 @@ body {
 .detail {
 	display: none;
 }
+
+#footer {
+	font-size: 75%;
+	font-weight: lighter;
+	margin: 0px;
+	padding: 0px;
+}

@@ -113,11 +113,17 @@ $('.address-entry').keyup( function() {
 	// only search when there are 3 or more characters
 	if( address.length < 3 ) { return; }
 	reittiopas.address_to_location( address , function(data) {
-		// hack
-		var temp = data.map( function(data) {
-			return { label: data.name, coords: data.coords };
-		} );
-		t.autocomplete( 'option', 'source', temp );
+		// case when only one response comes from server => put directly to display
+		if( data.length == 1 ) {
+			t.val( data[0].name );
+			t.data('location', data[0].coords );
+		} else {
+			// hack
+			var temp = data.map( function(data) {
+				return { label: data.name, coords: data.coords };
+			} );
+			t.autocomplete( 'option', 'source', temp );
+		}
 	} );
 } );
 

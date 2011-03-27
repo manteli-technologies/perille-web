@@ -105,6 +105,13 @@ $('#date').val( now.date() + '.' + now.month() + '.' + now.year() );
 $('#time').timepicker();
 $('#time').val( now.hours() + ':' + now.minutes() );
 
+$('#back').click( function(){
+	$('#entrypane').show('drop', 'slow');
+	$('#resultpane').hide();
+});
+
+
+// end ready
 } );
 
 $('.address-entry').keyup( function() {
@@ -205,16 +212,7 @@ $('#search').click( function() {
 
 <div id='resultpane' style='display:none' class='wrapper'>
 
-<!--
-<span id='back-button' class='button' style='float: right;'>Go back!</span>
--->
-
-<script type='text/javascript'>
-	$('#back-button').click( function(){
-		$('#entrypane').show('drop', 'slow');
-		$('#resultpane').hide();
-	});
-</script>
+<span id='back' class='button' style='float: right;'>Go back!</span>
 
 <ul id='routes'>
 

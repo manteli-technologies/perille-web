@@ -94,8 +94,6 @@ $('document').ready( function() {
 // initialize hsl (set up correct values for mapping)
 hsl.init();
 
-// intialize only once (failed in Chrome atleast):
-
 var now = new Date();
 $('#date').datepicker( {
 	dateFormat : 'dd.mm.yy'
@@ -182,17 +180,29 @@ $('#search').click( function() {
 			var item = $('<li>');
 			var end = hsl.decode( route[0].legs[ route[0].legs.length - 1 ] )
 			var start = hsl.decode( route[0].legs[0] );
-			kissa = start.first.time
 			item.html( start.first.time.toString() + '-' + end.last.time.toString() );
 			var parts = $('<ol>');
+			var coords = [];
 			$.each( route[0].legs , function(i, leg) {
 				leg = hsl.decode( leg );
 				var detailView = '<span class="detail">' + leg.first.name + ' @ ' + leg.first.time.toString() + ' - ' + leg.last.name + ' @ ' + leg.last.time.toString() + '</span>';
 				parts.append( '<li>' + leg.type + ' ' + leg.code + ' ' + detailView + '</li>' );
+				coords.push( leg.first.location );
 			} );
 			item.append( parts );
 			item.hover( function() {
 				$(this).find('.detail').fadeIn();
+				// clear content
+				$('#route-images').html('');
+				$.each( coords , function() {
+					var data = $(this);
+					data = data[0];
+					var img = $('<img>');
+					img.height('100px');
+					img.attr( 'src' , 'http://perille.mante.li/streetimage/image.php?latitude=' + data.x + '&longitude=' + data.y );
+					$('#route-images').append( img );
+					console.log( img );
+				} );
 			}, function() {
 				$(this).find('.detail').fadeOut();
 			} );
@@ -213,6 +223,9 @@ $('#search').click( function() {
 <div id='resultpane' style='display:none' class='wrapper'>
 
 <span id='back' class='button' style='float: right;'>Go back!</span>
+
+<div id='route-images' style='float: right; width: 25%;'>
+</div>
 
 <ul id='routes'>
 
